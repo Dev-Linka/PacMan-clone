@@ -1,31 +1,23 @@
-import java.awt.*;
-
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-import components.*;
-
-public class Main extends JFrame{
-    static JFrame frame = new JFrame("Frame");
+public class Main {
     public static void main(String[] args) {
-        makeframe();
-        paint(10,10,30,30);
-    }
+        JFrame window = new JFrame();
+        window.setTitle("pac-man");
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setSize(400, 400);
+        window.setVisible(true); 
+        window.setResizable(false);
 
-    public static void makeframe(){
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JLabel emptyLabel = new JLabel("");
-        emptyLabel.setPreferredSize(new Dimension(375, 300));
-        frame.getContentPane().add(emptyLabel , BorderLayout.CENTER);
-        frame.pack();
-        frame.setVisible(true); 
-    }
+        Panel panel = new Panel();
+        window.add(panel);
 
-        // draw oval 
-    public static void paint(int x,int y,int XSIZE,int YSIZE) {
-        Graphics g = frame.getGraphics();
-        g.setColor(Color.red);
-        g.fillOval(x, y, XSIZE, YSIZE);
-        g.dispose(); 
+        window.pack(); // resize the window to fit the preferred size of its components
+
+        panel.startGameThread();
+
+    
+        
     }
 }
