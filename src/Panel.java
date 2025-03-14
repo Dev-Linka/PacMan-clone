@@ -12,7 +12,7 @@ public class Panel extends JPanel implements Runnable {
     final int SCREENWIDTH = TILESIZE * MAXSCREENCOL; // 768 pixel
     final int SCREENHEIGHT = TILESIZE * MAXSCREENROW; // 576 pixel
 
-    final int FPS = 60; // 60 FPS
+    final int FPS = 120; // 60 FPS
 
 
     KeyManager keyHandler = new KeyManager();
@@ -28,6 +28,7 @@ public class Panel extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         this.addKeyListener(keyHandler); // aggiunge il keyHandler al pannello
         this.setFocusable(true); // rende il pannello focusabile
+        this.requestFocusInWindow();
     }
 
     public void startGameThread() { // inizializza il tread e lo avvia
@@ -36,41 +37,31 @@ public class Panel extends JPanel implements Runnable {
     }
 
     @Override
-    public void run(){
-        double interval = 1000000000 / FPS; // intervallo di tempo tra un frame e l'altro
-        //double nextDrawTime = System.nanoTime() + interval; // tempo in cui verrà disegnato il prossimo frame
-        double delta = 0;
-        double currentTime;
-        double lastTime = System.nanoTime();
-        long timer = 0;
-        int drawCount = 0; 
-
-
-
-
-        while (gameThread != null) {
-
-            currentTime = System.nanoTime();
-            delta += (currentTime - lastTime) / interval;
-            timer += (currentTime - lastTime);
+public void run() {
+    double interval = 1000000000 / FPS; // Tempo tra i frame
+    long lastTime = System.nanoTime();
+    
+    while (gameThread != null) {
+        long currentTime = System.nanoTime();
+        double delta = (currentTime - lastTime) / interval;
+        
+        if (delta >= 1) {
+            update();
+            repaint();
             lastTime = currentTime;
+        }
 
-            if(delta >= 1){
-                update();
-                repaint();
-                delta--;
-                drawCount++;
-            }
-
-            if(timer >= 1000000000){
-                System.out.println("FPS: " + drawCount);
-                drawCount = 0;
-                timer = 0;
-            }
+        try {
+            Thread.sleep(5); // Aggiunge una pausa per ridurre il carico della CPU
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
+}
+
 
     public void update() {
+        System.out.println("Up: " + keyHandler.up + ", Down: " + keyHandler.down + ", Left: " + keyHandler.left + ", Right: " + keyHandler.right);
         if(keyHandler.up == true){
             characterY -= characterSpeed;
         }else if(keyHandler.down == true){

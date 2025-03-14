@@ -1,5 +1,5 @@
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -12,6 +12,7 @@ public class Main {
 
         Panel panel = new Panel();
         window.add(panel);
+        window.addKeyListener(panel.keyHandler);
 
         window.pack(); // resize the window to fit the preferred size of its components
 
