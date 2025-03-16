@@ -6,7 +6,7 @@ public class Panel extends JPanel implements Runnable {
     final int TILES = 16; // ogni tile è 16x16 pixel
     final int SCALE = 3; // scala di 3
 
-    final int TILESIZE = TILES * SCALE; // 48 x 28 tile
+    public final int TILESIZE = TILES * SCALE; // 48 x 28 tile
     final int MAXSCREENCOL = 16; // 16 tile per riga
     final int MAXSCREENROW = 12; // 12 tile per colonna
     final int SCREENWIDTH = TILESIZE * MAXSCREENCOL; // 768 pixel
@@ -21,6 +21,8 @@ public class Panel extends JPanel implements Runnable {
     int characterX = 100;
     int characterY = 100;
     int characterSpeed = 4;
+
+    Player player = new Player(this, keyHandler, characterX, characterY, characterSpeed);
 
     public Panel() {
         this.setPreferredSize(new Dimension(SCREENWIDTH, SCREENHEIGHT));
@@ -61,24 +63,14 @@ public void run() {
 
 
     public void update() {
-        System.out.println("Up: " + keyHandler.up + ", Down: " + keyHandler.down + ", Left: " + keyHandler.left + ", Right: " + keyHandler.right);
-        if(keyHandler.up == true){
-            characterY -= characterSpeed;
-        }else if(keyHandler.down == true){
-            characterY += characterSpeed;
-        }else if(keyHandler.right == true){
-            characterX += characterSpeed;
-        }else if(keyHandler.left == true){
-            characterX -= characterSpeed;
-        }
+        player.update();
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g); 
 
         Graphics2D g2 = (Graphics2D) g; // cast a Graphics2D
-        g2.setColor(Color.white);
-        g2.fillRect(characterX, characterY, TILESIZE, TILESIZE);
+        
         g2.dispose(); // rilascia le risorse di sistema utilizzate da Graphics2D
 
     }
