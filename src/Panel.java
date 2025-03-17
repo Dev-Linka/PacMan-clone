@@ -26,7 +26,7 @@ public class Panel extends JPanel implements Runnable {
 
     public Panel() {
         this.setPreferredSize(new Dimension(SCREENWIDTH, SCREENHEIGHT));
-        this.setBackground(Color.gray);
+        this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyHandler); // aggiunge il keyHandler al pannello
         this.setFocusable(true); // rende il pannello focusabile
@@ -39,27 +39,27 @@ public class Panel extends JPanel implements Runnable {
     }
 
     @Override
-public void run() {
-    double interval = 1000000000 / FPS; // Tempo tra i frame
-    long lastTime = System.nanoTime();
-    
-    while (gameThread != null) {
-        long currentTime = System.nanoTime();
-        double delta = (currentTime - lastTime) / interval;
+    public void run() {
+        double interval = 1000000000 / FPS; // Tempo tra i frame
+        long lastTime = System.nanoTime();
         
-        if (delta >= 1) {
-            update();
-            repaint();
-            lastTime = currentTime;
-        }
+        while (gameThread != null) {
+            long currentTime = System.nanoTime();
+            double delta = (currentTime - lastTime) / interval;
+            
+            if (delta >= 1) {
+                update();
+                repaint();
+                lastTime = currentTime;
+            }
 
-        try {
-            Thread.sleep(5); // Aggiunge una pausa per ridurre il carico della CPU
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            try {
+                Thread.sleep(5); // Aggiunge una pausa per ridurre il carico della CPU
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
-}
 
 
     public void update() {
@@ -71,6 +71,8 @@ public void run() {
 
         Graphics2D g2 = (Graphics2D) g; // cast a Graphics2D
         
+        player.draw(g2);
+
         g2.dispose(); // rilascia le risorse di sistema utilizzate da Graphics2D
 
     }

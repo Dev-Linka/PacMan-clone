@@ -10,34 +10,33 @@ public class KeyManager implements KeyListener {
 
         if(code == KeyEvent.VK_W) {
             up = true;
+            left = false;
+            down = false;
+            right = false;
         }
         if(code == KeyEvent.VK_A) {
+            up = false;
             left = true;
+            down = false;
+            right = false;
         }
         if(code == KeyEvent.VK_S) {
+            up = false;
+            left = false;
             down = true;
+            right = false;
         }
         if(code == KeyEvent.VK_D) {
+            up = false;
+            left = false;
+            down = false;
             right = true;
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        int code = e.getKeyCode();
-
-        if(code == KeyEvent.VK_W) {
-            up = false;
-        }
-        if(code == KeyEvent.VK_A) {
-            left = false;
-        }
-        if(code == KeyEvent.VK_S) {
-            down = false;
-        }
-        if(code == KeyEvent.VK_D) {
-            right = false;
-        }
+        
     }
 
     @Override
