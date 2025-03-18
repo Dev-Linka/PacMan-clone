@@ -8,6 +8,8 @@ import javax.swing.*;
 public class Player extends Entity {
     Panel panel;
     KeyManager keyHandler;
+    int width=48;
+    int height=48;
 
     public Player(Panel panel, KeyManager keyHandler, int x, int y, int speed) {
         super(x, y, speed, "right");
@@ -57,6 +59,18 @@ public class Player extends Entity {
                 spriteNum = 1;
             }
             spriteCounter = 0;
+        }
+
+        if (x < 0) {
+            x = 0;
+        } else if (x > panel.SCREENWIDTH - width) {
+            x = panel.SCREENWIDTH - width;
+        }
+
+        if (y < 0) {
+            y = 0;
+        } else if (y > panel.SCREENHEIGHT - height) {
+            y = panel.SCREENHEIGHT - height;
         }
     }
 

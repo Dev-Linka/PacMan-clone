@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "PacMan-clone_ba347ede"
+        },
+        {
+            "type": "java",
             "name": "Attach",
             "request": "attach",
             "hostName": "localhost",
@@ -16,7 +23,7 @@
             "name": "Main",
             "request": "launch",
             "mainClass": "Main",
-            "projectName": "PacMan clone_64aabf28",
+            "projectName": "PacMan clone_64aabf28"
         }
     ]
 }

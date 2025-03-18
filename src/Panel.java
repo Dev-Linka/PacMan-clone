@@ -31,6 +31,7 @@ public class Panel extends JPanel implements Runnable {
         this.addKeyListener(keyHandler); // aggiunge il keyHandler al pannello
         this.setFocusable(true); // rende il pannello focusabile
         this.requestFocusInWindow();
+        
     }
 
     public void startGameThread() { // inizializza il tread e lo avvia
