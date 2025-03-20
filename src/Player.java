@@ -2,8 +2,6 @@ import java.awt.*;
 import java.awt.image.*;
 
 import javax.imageio.ImageIO;
-import javax.lang.model.element.PackageElement;
-import javax.swing.*;
 
 public class Player extends Entity {
     Panel panel;
