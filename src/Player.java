@@ -1,4 +1,4 @@
-import java.awt.*;
+import java.awt.*; 
 import java.awt.image.*;
 
 import javax.imageio.ImageIO;
@@ -13,6 +13,13 @@ public class Player extends Entity {
         super(x, y, speed, "right");
         this.panel = panel;
         this.keyHandler = keyHandler;
+
+        solidArea = new Rectangle(0, 0, 48, 48); // la hitbox del player
+        solidArea.x = 0;
+        solidArea.y = 0;
+        solidArea.width = 32;
+        solidArea.height = 32;
+
         getPlayerSpray();
     }
 
@@ -48,6 +55,9 @@ public class Player extends Entity {
             direction = "left";
             super.x -= super.speed;
         }
+
+        collisionOn = false;
+        //panel.collisionManager.checkTile(this);
 
         spriteCounter++;
         if(spriteCounter > 10){

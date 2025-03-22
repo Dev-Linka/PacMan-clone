@@ -1,3 +1,4 @@
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 public class Entity {
@@ -12,6 +13,9 @@ public class Entity {
 
     public int spriteCounter = 0;
     public int spriteNum = 1;
+
+    public Rectangle solidArea;
+    public boolean collisionOn = false;
 
     public Entity(int x, int y, int speed, String direction) {
         this.x = x;
