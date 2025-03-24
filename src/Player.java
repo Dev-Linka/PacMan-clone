@@ -6,15 +6,15 @@ import javax.imageio.ImageIO;
 public class Player extends Entity {
     Panel panel;
     KeyManager keyHandler;
-    int width=48;
-    int height=48;
+    int width=32;
+    int height=32;
 
     public Player(Panel panel, KeyManager keyHandler, int x, int y, int speed) {
         super(x, y, speed, "right");
         this.panel = panel;
         this.keyHandler = keyHandler;
 
-        solidArea = new Rectangle(0, 0, 48, 48); // la hitbox del player
+        solidArea = new Rectangle(0, 0, 32, 32); // la hitbox del player
         solidArea.x = 0;
         solidArea.y = 0;
         solidArea.width = 32;

@@ -10,8 +10,12 @@ public class CollisionManager {
 
     }
 
-    public void draw(Graphics g){
+    public boolean canMove(int x, int y, int width, int height){
+
+
         
+
+        return true;
     }
 
     /*public void checkTile(Entity entity){
