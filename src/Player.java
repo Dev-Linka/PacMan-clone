@@ -1,20 +1,25 @@
-import java.awt.*;
+import java.awt.*; 
 import java.awt.image.*;
 
 import javax.imageio.ImageIO;
-import javax.lang.model.element.PackageElement;
-import javax.swing.*;
 
 public class Player extends Entity {
     Panel panel;
     KeyManager keyHandler;
-    int width=48;
-    int height=48;
+    int width=32;
+    int height=32;
 
     public Player(Panel panel, KeyManager keyHandler, int x, int y, int speed) {
         super(x, y, speed, "right");
         this.panel = panel;
         this.keyHandler = keyHandler;
+
+        solidArea = new Rectangle(0, 0, 32, 32); // la hitbox del player
+        solidArea.x = 0;
+        solidArea.y = 0;
+        solidArea.width = 32;
+        solidArea.height = 32;
+
         getPlayerSpray();
     }
 
@@ -37,42 +42,49 @@ public class Player extends Entity {
     }
 
     public void update() {
-        if(keyHandler.up == true){
+        int newX = x;
+        int newY = y;
+    
+        if (keyHandler.up) {
             direction = "up";
-            super.y -= super.speed;
-        }else if(keyHandler.down == true){
+            newY -= speed;
+        } else if (keyHandler.down) {
             direction = "down";
-            super.y += super.speed;
-        }else if(keyHandler.right == true){
+            newY += speed;
+        } else if (keyHandler.right) {
             direction = "right";
-            super.x += super.speed;
-        }else if(keyHandler.left == true){
+            newX += speed;
+        } else if (keyHandler.left) {
             direction = "left";
-            super.x -= super.speed;
+            newX -= speed;
         }
-
+    
+        // Aggiorna la posizione temporanea della hitbox
+        solidArea.setLocation(newX, newY);
+    
+        // Controlla la collisione
+        collisionOn = panel.collisionManager.checkCollision(this);
+    
+        if (!collisionOn) {
+            // Se non c'è collisione, aggiorna la posizione
+            x = newX;
+            y = newY;
+        }
+    
+        // Gestione dell'animazione
         spriteCounter++;
-        if(spriteCounter > 10){
-            if(spriteNum == 1){
-                spriteNum = 2;
-            }else if(spriteNum == 2){
-                spriteNum = 1;
-            }
+        if (spriteCounter > 10) {
+            spriteNum = (spriteNum == 1) ? 2 : 1;
             spriteCounter = 0;
         }
-
-        if (x < 0) {
-            x = 0;
-        } else if (x > panel.SCREENWIDTH - width) {
-            x = panel.SCREENWIDTH - width;
-        }
-
-        if (y < 0) {
-            y = 0;
-        } else if (y > panel.SCREENHEIGHT - height) {
-            y = panel.SCREENHEIGHT - height;
-        }
+    
+        // Limiti dello schermo
+        if (x < 0) x = 0;
+        if (x > panel.SCREENWIDTH - width) x = panel.SCREENWIDTH - width;
+        if (y < 0) y = 0;
+        if (y > panel.SCREENHEIGHT - height) y = panel.SCREENHEIGHT - height;
     }
+    
 
     public void draw(Graphics2D g2) {
         //g2.setColor(Color.white);
@@ -120,6 +132,7 @@ public class Player extends Entity {
                 break;
         }
 
-        g2.drawImage(image, x, y, panel.TILESIZE, panel.TILESIZE, null);
+        g2.drawImage(image, x, y, width, height, null);
     }
 }
+
