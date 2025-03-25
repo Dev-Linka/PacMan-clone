@@ -27,14 +27,10 @@ public class Panel extends JPanel implements Runnable {
 
     CollisionManager collisionManager = new CollisionManager(this);
     Player player = new Player(this, keyHandler, characterX, characterY, characterSpeed);
-<<<<<<< HEAD
     Ghost ghost = new Ghost(this, MAXSCREENCOL, characterY, 3);
 
-
-=======
     Image background;
     Tile tile;
->>>>>>> 2c3b511156f90539b0009e957cb84721cbfcca1c
 
     public Panel() {
         this.setPreferredSize(new Dimension(SCREENWIDTH, SCREENHEIGHT));
