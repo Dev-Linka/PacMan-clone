@@ -23,6 +23,9 @@ public class Panel extends JPanel implements Runnable {
     int characterSpeed = 4;
 
     Player player = new Player(this, keyHandler, characterX, characterY, characterSpeed);
+    Ghost ghost = new Ghost(this, MAXSCREENCOL, characterY, 3);
+
+
 
     public Panel() {
         this.setPreferredSize(new Dimension(SCREENWIDTH, SCREENHEIGHT));
@@ -71,8 +74,9 @@ public class Panel extends JPanel implements Runnable {
         super.paintComponent(g); 
 
         Graphics2D g2 = (Graphics2D) g; // cast a Graphics2D
-        
+
         player.draw(g2);
+        ghost.draw(g2);
 
         g2.dispose(); // rilascia le risorse di sistema utilizzate da Graphics2D
 
