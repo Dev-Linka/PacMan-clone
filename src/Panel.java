@@ -22,7 +22,7 @@ public class Panel extends JPanel implements Runnable {
     private Thread gameThread;
 
     int characterX = 100;
-    int characterY = 100;
+    int characterY = 120;
     int characterSpeed = 4;
 
     CollisionManager collisionManager = new CollisionManager(this);
@@ -78,8 +78,8 @@ public class Panel extends JPanel implements Runnable {
     public void paintComponent(Graphics g) {
         super.paintComponent(g); 
         g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
-        g.setColor(Color.BLUE);
-        g.drawRect(60, 60, 72, 48); // 16h x 24w tutti i valori per 3 che è la scala
+        //g.setColor(Color.BLUE);
+        //g.drawRect(60, 60, 72, 48); // 16h x 24w tutti i valori per 3 che è la scala
         Graphics2D g2 = (Graphics2D) g; // cast a Graphics2D
         
         player.draw(g2);
