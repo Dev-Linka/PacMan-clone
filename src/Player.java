@@ -14,11 +14,11 @@ public class Player extends Entity {
         this.panel = panel;
         this.keyHandler = keyHandler;
 
-        solidArea = new Rectangle(0, 0, 32, 32); // la hitbox del player
+        solidArea = new Rectangle(4, 4, width, height); // la hitbox del player
         solidArea.x = 0;
         solidArea.y = 0;
-        solidArea.width = 32;
-        solidArea.height = 32;
+        solidArea.width = width;
+        solidArea.height = height;
 
         getPlayerSpray();
     }
@@ -60,16 +60,16 @@ public class Player extends Entity {
         }
     
         // Aggiorna la posizione temporanea della hitbox
-        solidArea.setLocation(newX, newY);
+        // solidArea.setLocation(newX, newY);
     
         // Controlla la collisione
-        collisionOn = panel.collisionManager.checkCollision(this);
+        // collisionOn = panel.collisionManager.checkCollision(this);
     
-        if (!collisionOn) {
-            // Se non c'è collisione, aggiorna la posizione
-            x = newX;
-            y = newY;
-        }
+        // if (!collisionOn) {
+        //     // Se non c'è collisione, aggiorna la posizione
+             x = newX;
+             y = newY;
+        // }
     
         // Gestione dell'animazione
         spriteCounter++;
@@ -87,8 +87,7 @@ public class Player extends Entity {
     
 
     public void draw(Graphics2D g2) {
-        //g2.setColor(Color.white);
-        //g2.fillRect(super.x, super.y, panel.TILESIZE, panel.TILESIZE);
+        
         BufferedImage image = null;
 
         switch (direction) {
@@ -133,6 +132,8 @@ public class Player extends Entity {
         }
 
         g2.drawImage(image, x, y, width, height, null);
+        // g2.setColor(Color.red); // Rosso trasparente (150 è l'opacità)
+        // g2.fillRect(x, y, width, height); // Disegna la hitbox sopra il personaggio
     }
 }
 
