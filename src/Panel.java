@@ -46,7 +46,6 @@ public class Panel extends JPanel implements Runnable {
         tileImage = collisionManager.getTile(0, 0);
     }
 
-
     public void startGameThread() { // inizializza il tread e lo avvia
         gameThread = new Thread(this);
         gameThread.start();
@@ -82,7 +81,6 @@ public class Panel extends JPanel implements Runnable {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g); 
-<<<<<<< HEAD
         g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
         //g.setColor(Color.BLUE);
         //g.drawRect(60, 60, 72, 48); // 16h x 24w tutti i valori per 3 che è la scala
@@ -90,10 +88,6 @@ public class Panel extends JPanel implements Runnable {
 
         player.draw(g2);
         ghost.draw(g2);
-=======
->>>>>>> e81d6d7 (updates)
-
-        Graphics2D g2 = (Graphics2D) g; 
 
         int x = 60, y = 60;
         
