@@ -44,10 +44,11 @@ public class Panel extends JPanel implements Runnable {
         this.requestFocusInWindow();
         tile = new Tile();
         tileImage = collisionManager.getTile(0, 0);
+        SoundManager.loadAllSounds();        
     }
 
     public void startGameThread() { // inizializza il tread e lo avvia
-        gameThread = new Thread(this);
+        gameThread = new Thread(this);       
         gameThread.start();
     }
 
@@ -55,7 +56,7 @@ public class Panel extends JPanel implements Runnable {
     public void run() {
         double interval = 1000000000 / FPS; // Tempo tra i frame
         long lastTime = System.nanoTime();
-        
+        SoundManager.playIntroAndLoopBackground();
         while (gameThread != null) {
             long currentTime = System.nanoTime();
             double delta = (currentTime - lastTime) / interval;

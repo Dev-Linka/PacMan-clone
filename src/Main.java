@@ -18,7 +18,6 @@ public class Main {
 
         panel.startGameThread();
 
-    
-        
+        SoundManager.stopSound("chomp");       
     }
 }
