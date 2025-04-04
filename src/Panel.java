@@ -29,7 +29,7 @@ public class Panel extends JPanel implements Runnable {
 
     CollisionManager collisionManager = new CollisionManager("Pacman-Tiles.png", 8, 8);
     Player player = new Player(this, keyHandler, characterX, characterY, characterSpeed);
-    Ghost ghost = new Ghost(this, MAXSCREENCOL, characterY, 3);
+    Ghost ghost = new Ghost(this, MAXSCREENCOL, characterY, 3, "red");
 
     Image background;
     Tile tile;
