@@ -35,6 +35,9 @@ public class Panel extends JPanel implements Runnable {
     Tile tile;
     BufferedImage tileImage;
 
+    BonusManager life = new BonusManager(30, 30, false);
+    BonusManager fruit = new BonusManager(80, 60, true);
+
     public Panel() {
         this.setPreferredSize(new Dimension(SCREENWIDTH, SCREENHEIGHT));
         this.setBackground(Color.black);
@@ -44,7 +47,15 @@ public class Panel extends JPanel implements Runnable {
         this.requestFocusInWindow();
         tile = new Tile();
         tileImage = collisionManager.getTile(0, 0);
-        SoundManager.loadAllSounds();        
+        SoundManager.loadAllSounds();
+        
+        life.addBonus("life");
+        life.addBonus("life");
+
+        fruit.addBonus("cherry");
+        fruit.addBonus("apple");
+
+
     }
 
     public void startGameThread() { // inizializza il tread e lo avvia
@@ -89,6 +100,9 @@ public class Panel extends JPanel implements Runnable {
 
         player.draw(g2);
         ghost.draw(g2);
+
+        life.draw(g2); // ?
+        fruit.draw(g2);
 
         int x = 60, y = 60;
         
