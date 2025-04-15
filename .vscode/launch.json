@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "App",
+            "projectName": "PacMan-clone_aed4d5e6"
+        },
+        {
+            "type": "java",
             "name": "CollisionManager",
             "request": "launch",
             "mainClass": "CollisionManager",
